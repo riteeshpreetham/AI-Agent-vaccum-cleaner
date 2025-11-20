@@ -1,0 +1,34 @@
+def agent(percept):
+    room, status = percept
+    if room == 'A':
+        if status == 'CLEAN':
+            return 'Move to right'
+        elif status == 'DIRTY':
+            return 'SUCK'
+    elif room == 'B':
+        if status == 'CLEAN':
+            return 'Move to left'
+        elif status == 'DIRTY':
+            return 'SUCK'
+def main():
+    rooms = ['A', 'B']
+    cleanliness_status = ['CLEAN', 'DIRTY']
+
+    percept_table = {}
+
+    while True:
+        room = input("Enter the room (A/B) or type 'exit' to quit: ")
+        if room.lower() == 'exit':
+            break
+
+        status = input("Enter the cleanliness status (CLEAN/DIRTY): ")
+
+        action = agent((room, status))
+        print("Action:", action)
+
+        percept_table[(room, status)] = action
+    print("\nAGENT FUNCTION Percept-Action Table")
+    for percept, action in percept_table.items():
+        print("Percept:", percept, "Action:",action)
+
+main()
